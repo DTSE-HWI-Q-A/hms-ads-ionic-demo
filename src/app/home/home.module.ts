@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
+import { HMSAds } from '@hmscore/ionic-native-hms-ads/ngx';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
@@ -14,6 +15,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [HMSAds]
 })
 export class HomePageModule {}

@@ -1,6 +1,7 @@
+
 #container {
   text-align: center;
-
+  background-color: slategray;
   position: absolute;
   left: 0;
   right: 0;
@@ -16,12 +17,45 @@
 #container p {
   font-size: 16px;
   line-height: 22px;
-
-  color: #8c8c8c;
-
+  color: slategray;
   margin: 0;
 }
 
 #container a {
   text-decoration: none;
+}
+
+.alert-wrapper {
+  background: #e5e5e5;
+}
+
+.alert-class .alert-wrapper {
+  background: #e5e5e5;
+}
+
+ion-content.background {
+  --ion-background-color: #F5F3F4;
+}
+
+.submit-button {
+  --background: #BA181B;
+  --color: white;
+  --height: 44px;
+  --width: 100%;
+  --padding: 10px;
+  --text-align: center;
+  --text-decoration: none;
+  --display: inline-block;
+  --font-size: 10px;
+  --margin: 2px 1px;
+  --margin-left: 10px;
+  --cursor: pointer;
+  --border-color: #660708;
+  --border-radius: 8px;
+}
+
+.selector {
+  --padding-bottom: 10px;
+  --padding-start: 10px;
+  --padding-end: 10px;
 }

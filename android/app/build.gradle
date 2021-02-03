@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.huawei.agconnect'
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  defaultConfig {
+    applicationId "com.dtse.cjra.ads.demo"
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+  signingConfigs {
+    release {
+      storeFile file("hms_ads_demo_keystore.jks")
+      storePassword "123456"
+      keyAlias "dtse"
+      keyPassword "123456"
+    }
+  }
+  buildTypes {
+    debug {
+      signingConfig signingConfigs.release
+    }
+    release {
+      signingConfig signingConfigs.release
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+repositories {
+  flatDir {
+    dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+  }
+}
+
+dependencies {
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+  implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+  implementation project(':capacitor-android')
+  testImplementation "junit:junit:$junitVersion"
+  androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+  androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+  implementation project(':capacitor-cordova-android-plugins')
+
+  implementation 'com.huawei.hms:ads-identifier:3.4.37.300'
+  implementation 'com.huawei.hms:ads-installreferrer:3.4.37.300'
+
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+  def servicesJSON = file('google-services.json')
+  if (servicesJSON.text) {
+    apply plugin: 'com.google.gms.google-services'
+  }
+} catch (Exception e) {
+  logger.warn("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}
